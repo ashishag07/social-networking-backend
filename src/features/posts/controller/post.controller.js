@@ -8,8 +8,6 @@ import {
   updatePostRepo,
 } from "../model/post.repository.js";
 
-import mongoose from "mongoose";
-
 // 1. -----------------------------------------------------------
 export const getAllPostsController = async (req, res, next) => {
   try {
@@ -59,9 +57,12 @@ export const getUserPostsController = async (req, res, next) => {
 // 4. --------------------------------------------------------------
 export const addNewPostController = async (req, res, next) => {
   try {
+    const caption = req.body.caption;
+    const imageUrl = req.file.filename || "default url";
     const postObj = {
       userId: req.userId,
-      ...req.body,
+      caption,
+      imageUrl,
     };
     const post = await addNewPostRepo(postObj);
 

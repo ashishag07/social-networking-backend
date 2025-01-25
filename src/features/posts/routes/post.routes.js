@@ -8,14 +8,14 @@ import {
   deletePostController,
   updatePostController,
 } from "../controller/post.controller.js";
+import { postImageUpload } from "../../../middlewares/postImageUpload.js";
 
 const postRouter = express.Router();
 
 postRouter.get("/all", getAllPostsController);
 postRouter.get("/:id", getPostByIdController);
 postRouter.get("/", getUserPostsController);
-postRouter.post("/", addNewPostController);
-
+postRouter.post("/", postImageUpload.single("imageUrl"), addNewPostController);
 postRouter.delete("/:id", deletePostController);
 postRouter.put("/:id", updatePostController);
 
