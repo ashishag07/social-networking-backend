@@ -58,7 +58,7 @@ export const getUserPostsController = async (req, res, next) => {
 export const addNewPostController = async (req, res, next) => {
   try {
     const caption = req.body.caption;
-    const imageUrl = req.file.filename || "default url";
+    const imageUrl = req.file?.filename || "default url";
     const postObj = {
       userId: req.userId,
       caption,
@@ -101,7 +101,14 @@ export const updatePostController = async (req, res, next) => {
   try {
     const postId = req.params.id;
     const userId = req.userId;
-    const result = await updatePostRepo(postId, userId, req.body);
+
+    const caption = req.body.caption;
+    const imageUrl = req.file?.filename || "default url";
+    const updatePostObj = {
+      caption,
+      imageUrl,
+    };
+    const result = await updatePostRepo(postId, userId, updatePostObj);
     if (!result) {
       return next(new CustomError(400, "You can update only your post !!"));
     }

@@ -21,11 +21,11 @@ export const deletPostRepo = async (postId, userId) => {
   return await postModel.findOneAndDelete({ _id: postId, userId: userId });
 };
 
-export const updatePostRepo = async (postId, userId, newPostObj) => {
+export const updatePostRepo = async (postId, userId, updatePostObj) => {
   const filter = {
     _id: postId,
     userId: userId,
   };
 
-  return await postModel.findOneAndUpdate(filter, newPostObj, { new: true });
+  return await postModel.findOneAndUpdate(filter, updatePostObj, { new: true });
 };

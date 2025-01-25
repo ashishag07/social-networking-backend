@@ -17,6 +17,10 @@ postRouter.get("/:id", getPostByIdController);
 postRouter.get("/", getUserPostsController);
 postRouter.post("/", postImageUpload.single("imageUrl"), addNewPostController);
 postRouter.delete("/:id", deletePostController);
-postRouter.put("/:id", updatePostController);
+postRouter.put(
+  "/:id",
+  postImageUpload.single("imageUrl"),
+  updatePostController
+);
 
 export default postRouter;
