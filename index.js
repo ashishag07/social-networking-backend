@@ -13,11 +13,13 @@ import likesRouter from "./src/features/likes/routes/likes.routes.js";
 // import middlewares
 import { errorHandleMiddleware } from "./src/middlewares/errorHandle.middleware.js";
 import { auth } from "./src/middlewares/auth.middleware.js";
+import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 
 dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(loggerMiddleware);
 
 app.use("/api", userRouter);
 app.use("/api/posts", auth, postRouter);

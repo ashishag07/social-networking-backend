@@ -11,7 +11,6 @@ import {
 // 1. -----------------------------------------------------------
 export const getAllPostsController = async (req, res, next) => {
   try {
-    console.log("Testing to get authorized details: ", req);
     const allPosts = await findAllPostsRepo();
     return res.status(200).json({
       success: true,
